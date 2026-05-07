@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfrah Cognix</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    :root {
+        --bg-gradient-start: #0a0f1c;
+        /* Deep dark blue/black base */
+        --bg-gradient-end: #002b36;
+        /* Deep Dark Turquoise */
+        --primary-accent: #00ced1;
+        /* DarkTurquoise */
+        --primary-glow: rgba(0, 206, 209, 0.5);
+        --secondary-gold: #ffd700;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --text-main: #ffffff;
+        --text-muted: #b0c4de;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: radial-gradient(circle at top center, #1a3a40 0%, #050a10 60%);
+        color: var(--text-main);
+        min-height: 100vh;
+        padding-bottom: 50px;
+    }
+
+    /* --- Typography Helpers --- */
+    .highlight-gold {
+        color: var(--secondary-gold);
+    }
+
+    .section-heading {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 40px;
+        margin-top: 60px;
+    }
+
+    /* --- Hero Section --- */
+    .hero-section {
+        text-align: center;
+        padding: 80px 20px 40px;
+        background: radial-gradient(ellipse at top, rgba(0, 206, 209, 0.15) 0%, transparent 70%);
+    }
+
+    .main-title {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+    }
+
+    .referral-box {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--primary-accent);
+        box-shadow: 0 0 15px var(--primary-glow);
+        display: inline-flex;
+        padding: 5px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .referral-box input {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        padding: 10px 15px;
+        flex-grow: 1;
+        font-size: 0.9rem;
+        outline: none;
+    }
+
+    .referral-box button {
+        background: linear-gradient(135deg, #008B8B, #20B2AA);
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    /* --- Wallet Section --- */
+    .wallet-section {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .wallet-balance {
+        background: rgba(255, 255, 255, 0.1);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 30px;
+        border-radius: 50px;
+        border: 1px solid var(--secondary-gold);
+        margin-bottom: 15px;
+    }
+
+    .gold-coin {
+        color: var(--secondary-gold);
+        font-size: 1.5rem;
+    }
+
+    .amount {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-gold);
+    }
+
+    .withdraw-note {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+    }
+
+    .withdraw-link {
+        color: var(--secondary-gold);
+        text-decoration: underline;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    /* --- Benefits Section --- */
+    .benefits-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .benefits-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .benefits-column {
+        flex: 1;
+    }
+
+    .benefits-column h3 {
+        text-align: center;
+        font-weight: 500;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+
+    .role-label {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .benefit-card {
+        background: linear-gradient(135deg, rgba(32, 178, 170, 0.15), rgba(0, 139, 139, 0.05));
+        border: 1px solid rgba(0, 206, 209, 0.2);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .step-number {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-muted);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border: 1px solid var(--secondary-gold);
+        flex-shrink: 0;
+    }
+
+    .benefit-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Category Table */
+    .category-table {
+        border-radius: 12px;
+        overflow: hidden;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .table-row {
+        background: rgba(32, 178, 170, 0.1);
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 206, 209, 0.1);
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .price-badge {
+        background: rgba(255, 215, 0, 0.2);
+        color: var(--secondary-gold);
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        border: 1px solid var(--secondary-gold);
+    }
+
+    /* --- Top Earners (Podium) --- */
+    .podium-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 15px;
+        height: 350px;
+        margin-bottom: 40px;
+    }
+
+    .podium-stand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 140px;
+    }
+
+    .medal {
+        width: 50px;
+        height: 50px;
+        /* Circle for now, image in production */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .winner-name {
+        margin-bottom: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .podium-box {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .winnings {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    /* Rank Specific Styles */
+    .rank-1 .medal {
+        background: linear-gradient(135deg, #FFD700, #FDB931);
+        color: #8a6e00;
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+
+    .rank-1 .podium-box {
+        height: 200px;
+        background: linear-gradient(to bottom, #d4af37, #aa882c);
+    }
+
+    /* Gold */
+
+    .rank-2 .medal {
+        background: linear-gradient(135deg, #E0E0E0, #BDBDBD);
+        color: #555;
+    }
+
+    .rank-2 .podium-box {
+        height: 140px;
+        background: linear-gradient(to bottom, #757575, #424242);
+    }
+
+    /* Silver */
+
+    .rank-3 .medal {
+        background: linear-gradient(135deg, #CD7F32, #A0522D);
+        color: #3e1c0a;
+    }
+
+    .rank-3 .podium-box {
+        height: 100px;
+        background: linear-gradient(to bottom, #8d4f2b, #5c3317);
+    }
+
+    /* Bronze */
+
+    .mentees-count {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .avatars {
+        display: flex;
+    }
+
+    .avatars img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid var(--bg-gradient-start);
+        margin-left: -10px;
+    }
+
+    .avatars img:first-child {
+        margin-left: 0;
+    }
+
+    /* --- Footer CTA --- */
+    .footer-cta {
+        background: linear-gradient(135deg, rgba(32, 178, 170, 0.2), rgba(0, 0, 0, 0.4));
+        max-width: 900px;
+        margin: 60px auto 0;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(0, 206, 209, 0.2);
+    }
+
+    .footer-cta h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .domain-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin: 20px 0 10px;
+    }
+
+    .tags {
+        margin-bottom: 25px;
+    }
+
+    .tag {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 5px 15px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .certifications {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        font-size: 0.9rem;
+    }
+
+    .gold-check {
+        color: var(--secondary-gold);
+    }
+
+    .apply-btn {
+        background: #9932CC;
+        /* Keeping purple/orchid for the CTA button to stand out, or could be teal */
+        background: linear-gradient(135deg, #008B8B, #20B2AA);
+        border: none;
+        color: white;
+        padding: 12px 40px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(148, 0, 211, 0.3);
+    }
+
+    .apply-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .benefits-container {
+            flex-direction: column;
+        }
+
+        .podium-container {
+            align-items: flex-end;
+            /* Keep aligning bottom */
+            height: auto;
+        }
+
+        .podium-box {
+            width: 100px;
+            /* Smaller boxes */
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo (2).png" alt="Alfrah Cognix Logo">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="programs.html" class="nav-link">Programs</a></li>
+                    <li><a href="guidance.html" class="nav-link">Career & Guidance</a></li>
+                    <li><a href="signup.html" class="nav-link">Packs & Plans</a></li>
+                    <li><a href="refer.html" class="nav-link">Refer & Earn</a></li>
+                    <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://alfrahcognix.in/" class="btn btn-login">Go For Classes</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <h1 class="main-title">Inspire The <span class="highlight-gold">Person</span><br>Who Inspires <span
+                class="highlight-gold">You</span>.</h1>
+        <p class="subtitle"><span class="highlight-gold">REFER</span> A Friend And Earn A Guaranteed <span
+                class="highlight-gold">₹500</span><br>For Each Successful Referral.</p>
+
+        <div class="referral-box">
+            <input type="text" value="https://example.com/ref/user123" id="referralLink" readonly>
+            <button onclick="copyLink()">Share Link</button>
+        </div>
+    </header>
+
+    <!-- Wallet Section -->
+    <section class="wallet-section">
+        <h2 class="section-heading">Your Cash Wallet</h2>
+        <div class="wallet-balance">
+            <i class="fas fa-coins gold-coin"></i>
+            <span class="amount">₹500</span>
+        </div>
+        <p class="withdraw-note">You can withdraw cash once you reach cash above ₹2500</p>
+        <a href="#" class="withdraw-link">Withdraw</a>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <h2 class="section-heading highlight-purple">Benefits</h2>
+        <div class="benefits-container">
+            <!-- Left Column: For You -->
+            <div class="benefits-column">
+                <h3>For You</h3>
+                <p class="role-label">Referrer</p>
+
+                <div class="benefit-card">
+                    <div class="step-number">1</div>
+                    <p>Earn ₹500 Per Referral When Your Friend Enrolls At Alfrah Cognix.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="step-number">2</div>
+                    <p>Get Instant Credit To Your Wallet Upon Successful Enrollment.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="step-number">3</div>
+                    <p>Receive Monthly Recognition As A Top Referrer On Corizo's Social Media</p>
+                </div>
+            </div>
+
+            <!-- Right Column: For Your Friend -->
+            <div class="benefits-column">
+                <h3>For Your Friend</h3>
+                <p class="role-label">Referee</p>
+
+                <div class="benefit-card">
+                    <div class="step-number">1</div>
+                    <p>Get Up To ₹500 Signup Bonus On First Enrollment.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="step-number">2</div>
+                    <p>Enjoy Free Introductory Webinars And Resources.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="step-number">3</div>
+                    <p>Save More With Ongoing Discounts Through The Refer & Earn Program.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Wise Benefits Table -->
+        <h2 class="section-heading table-heading">Category wise Benefits</h2>
+        <div class="category-table">
+            <div class="table-row">
+                <span>Programs that cost <strong>below ₹8000/-</strong></span>
+                <span class="price-badge">₹500/-</span>
+            </div>
+            <div class="table-row">
+                <span>Programs that cost <strong>above ₹8000/-</strong></span>
+                <span class="price-badge">₹1000/-</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Previous Top Earners -->
+    <section class="top-earners-section">
+        <h2 class="section-heading">Previous Top Earners</h2>
+
+        <div class="podium-container">
+            <!-- Rank 2 -->
+            <div class="podium-stand rank-2">
+                <div class="medal silver">2</div>
+                <div class="winner-name">Gaurav Singh</div>
+                <div class="podium-box silver-box">
+                    <span class="winnings">₹35000</span>
+                </div>
+            </div>
+
+            <!-- Rank 1 -->
+            <div class="podium-stand rank-1">
+                <div class="medal gold">1</div>
+                <div class="winner-name">Preeti Shinde</div>
+                <div class="podium-box gold-box">
+                    <span class="winnings">₹55000</span>
+                </div>
+            </div>
+
+            <!-- Rank 3 -->
+            <div class="podium-stand rank-3">
+                <div class="medal bronze">3</div>
+                <div class="winner-name">Saloni Pal</div>
+                <div class="podium-box bronze-box">
+                    <span class="winnings">₹15000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mentees-count">
+            <div class="avatars">
+                <img src="https://i.pravatar.cc/100?img=12" alt="">
+                <img src="https://i.pravatar.cc/100?img=15" alt="">
+                <img src="https://i.pravatar.cc/100?img=20" alt="">
+                <img src="https://i.pravatar.cc/100?img=33" alt="">
+            </div>
+            <span>+9k Mentees</span>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="footer-cta">
+        <h2>Premier <span class="highlight-gold">Internship Opportunity</span> Available</h2>
+        <p>Opportunity to elevate your portfolio and earn up to <strong>INR 15,000</strong>.</p>
+        <p class="domain-label">IN THE DOMAIN OF</p>
+        <div class="tags">
+            <span class="tag">Marketing</span>
+            <span class="tag">Sales</span>
+        </div>
+        <div class="certifications">
+            <span><i class="fas fa-check-circle gold-check"></i> Industry Ratified Certification</span>
+            <span><i class="fas fa-check-circle gold-check"></i> Letter Of Recommendation</span>
+        </div>
+        <a href="signup.html"><button class="apply-btn">Apply Now</button></a>
+    </footer><br><br>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col" style="flex: 2;">
+                <div class="footer-logo">Alfrah Cognix</div>
+                <p>1st floor, 471, Oppo, Income tax office, to, 80th main road, 6th Block, Koramangala, Bengaluru,
+                    Karnataka 560095</p>
+
+                <h4 style="margin-top: 20px;">Community Exclusive</h4>
+                <p>Subscribe to our newsletter for exclusive updates on the latest releases and special offers.</p>
+                <div class="subscribe-box" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <input type="email" placeholder="Email Id"
+                        style="padding: 10px; border-radius: 4px; border: none; flex: 1;">
+                    <button class="btn btn-primary"
+                        style="border-radius: 4px; background-color: #00bcd4; color: white;">Subscribe</button>
+                </div>
+                <p style="margin-top: 20px;">©2025 . All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="guidance.html">Careers</a></li>
+                    <li><a href="signup.html">Packs & Plans</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Marketing</li>
+                    <li>Product</li>
+                    <li>Data</li>
+                    <li>Tech</li>
+                    <li>Design</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html#privacy">Privacy Policy</a></li>
+                    <li><a href="legal.html#terms">Terms and Condition</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Support</h4>
+                <ul>
+                    <li><a href="legal.html#faq">FAQ</a></li>
+                    <li><a href="legal.html#refund">Payment and Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>100% safe and secure payment with Razorpay, Easebuzz, Skill India, Microsoft, NSDC, #startupindia</p>
+            <div class="social-links">
+                <!-- Social Icons would go here -->
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
+
+
+
+<script>
+    function copyLink() {
+        var copyText = document.getElementById("referralLink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        navigator.clipboard.writeText(copyText.value);
+
+        // Optional: Alert or button text change
+        alert("Copied the referral link: " + copyText.value);
+    }
+
+</script>

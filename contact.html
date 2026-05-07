@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfrah Cognix</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-gradient-start: #011215;
+            /* Black/Dark Cyan */
+            --bg-gradient-end: #003333;
+            /* Deep Dark Turquoise */
+            --primary-accent: #00ced1;
+            /* DarkTurquoise */
+            --primary-dark: #008080;
+            /* Teal */
+            --primary-glow: rgba(0, 206, 209, 0.4);
+            --secondary-accent: #20b2aa;
+            /* LightSeaGreen */
+            --glass-bg: rgba(0, 40, 50, 0.6);
+            --glass-border: rgba(0, 206, 209, 0.3);
+            --text-main: #f0ffff;
+            /* Azure */
+            --text-muted: #b0e0e6;
+            /* PowderBlue */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top center, #004d4d 0%, #011215 80%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Typography Helpers --- */
+        .highlight-primary {
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(0, 206, 209, 0.3);
+        }
+
+        .section-heading-left {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .section-heading.center {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            margin-top: 80px;
+            color: var(--text-main);
+        }
+
+        .section-desc.center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 100px 20px 80px;
+            background: linear-gradient(180deg, rgba(0, 206, 209, 0.15) 0%, transparent 100%);
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            /* Image 1 shows left aligned text blocks mostly */
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-left: 20px;
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                border-radius: 12px;
+                padding: 30px 20px;
+            }
+
+            /* Indent slightly if needed */
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #fff, var(--primary-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* --- Mission & Vision --- */
+        .mission-vision-section {
+            padding: 60px 0;
+            background: #ffffff;
+            /* White bg for this section as per image usually, but request is Dark Theme. */
+            /* Wait, request is "Change into dark turquoise theme" for the IMAGES content.
+           So I should keep it dark or invert the image's white bg.
+           I will use a dark panel for Mission/Vision to stay in theme. */
+            background: transparent;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+            }
+        }
+
+        .text-block p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* --- Core Values --- */
+        .values-section {
+            padding: 60px 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .value-card {
+            background: #ffffff;
+            /* Image has white cards */
+            /* Converting to Dark Theme */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 206, 209, 0.2);
+            border-color: var(--primary-accent);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 206, 209, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+        }
+
+        .value-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- Impact Section --- */
+        .impact-section {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #005ce6, #001f4d);
+            /* Image blue bg */
+            /* Converting to Dark Turquoise Theme */
+            background: linear-gradient(135deg, var(--primary-accent), #004d4d);
+            text-align: center;
+            border-radius: 0;
+            /* To make it full width or containered? The image shows full width rounded rect maybe?
+           Actually image 2 shows a big blue block. I'll make it a full width section or wide container.
+           I'll use a container with border radius to match image look. */
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 206, 209, 0.3);
+        }
+
+        .impact-section h2.white {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .impact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1 1 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        /* --- Join Team Section --- */
+        .join-team-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .center-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #005ce6, #2a81ff);
+            /* Image blue btn */
+            /* Converting to Dark Turquoise Theme */
+            background: linear-gradient(135deg, var(--primary-accent), #009999);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 206, 209, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 206, 209, 0.6);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-section {
+                justify-content: center;
+            }
+
+            .section-heading-left {
+                text-align: center;
+            }
+
+            .text-block {
+                text-align: center;
+            }
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo (2).png" alt="Alfrah Cognix Logo">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="programs.html" class="nav-link">Programs</a></li>
+                    <li><a href="guidance.html" class="nav-link">Career & Guidance</a></li>
+                    <li><a href="signup.html" class="nav-link">Packs & Plans</a></li>
+                    <li><a href="refer.html" class="nav-link">Refer & Earn</a></li>
+                    <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://alfrahcognix.in/" class="btn btn-login">Go For Classes</a>
+            </div>
+
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Duplicate Global CSS Removed -->
+
+    <div class="landing-container">
+        <!-- Background Grid (Same as Login) -->
+        <div class="image-grid">
+            <div class="grid-col col-1">
+                <img src="assets/images/background1.avif" alt="">
+                <img src="assets/images/background2.avif" alt="">
+                <img src="assets/images/background3.avif" alt="">
+            </div>
+            <div class="grid-col col-2">
+                <img src="assets/images/background4.avif" alt="">
+                <img src="assets/images/background5.avif" alt="">
+                <img src="assets/images/background6.avif" alt="">
+            </div>
+            <div class="grid-col col-3">
+                <img src="assets/images/background7.avif" alt="">
+                <img src="assets/images/background8.avif" alt="">
+            </div>
+        </div>
+
+        <!-- Main Content Layout -->
+        <div class="content-wrapper">
+            <!-- Left Side: Hero Text -->
+            <div class="hero-text-section">
+                <h1 class="hero-headline">
+                    Welcome <br>
+                    To Join in the <br>
+                    Largest Skill Hub<br>
+                    of India
+                </h1>
+                <p class="hero-subtext">A transformational, practical program that
+                    can unlock your career success</p>
+                <button class="explore-btn">Explore Programs</button>
+            </div>
+
+            <!-- Center/Right: Contact Modal -->
+            <div class="login-modal-container">
+                <div class="login-modal contact-modal">
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                    <h2>CONTACT US</h2>
+                    <p class="welcome-text">Got Questions? Let's Connect and Help You Succeed!</p>
+
+                    <div class="contact-options">
+                        <div class="contact-card">
+                            <a href="tel:+919150128792">
+                                <h4>Call us - +91 9150128792</h4>
+                            </a>
+                            <p>Get Instant response</p>
+                        </div>
+                        <div class="contact-card">
+                            <h4>E-mail us - <a href="mailto:support@alfrahcognix.com">support@alfrahcognix.com</a></h4>
+                            <p>Average response time is 12-24 hours</p>
+                        </div>
+                        <div class="contact-card">
+                            <a href="https://wa.me/919150128792">
+                                <h4>Chat with us - +91 9150128792</h4>
+                            </a>
+                            <p>Get Instant response</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col" style="flex: 2;">
+                <div class="footer-logo">Alfrah Cognix</div>
+                <p>1st floor, 471, Oppo, Income tax office, to, 80th main road, 6th Block, Koramangala, Bengaluru,
+                    Karnataka 560095</p>
+
+                <h4 style="margin-top: 20px;">Community Exclusive</h4>
+                <p>Subscribe to our newsletter for exclusive updates on the latest releases and special offers.</p>
+                <div class="subscribe-box" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <input type="email" placeholder="Email Id"
+                        style="padding: 10px; border-radius: 4px; border: none; flex: 1;">
+                    <button class="btn btn-primary" style="border-radius: 4px;">Subscribe</button>
+                </div>
+                <p style="margin-top: 20px;">©2025 . All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="guidance.html">Careers</a></li>
+                    <li><a href="signup.html">Packs & Plans</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Marketing</li>
+                    <li>Product</li>
+                    <li>Data</li>
+                    <li>Tech</li>
+                    <li>Design</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html#privacy">Privacy Policy</a></li>
+                    <li><a href="legal.html#terms">Terms and Condition</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Support</h4>
+                <ul>
+                    <li><a href="legal.html#faq">FAQ</a></li>
+                    <li><a href="legal.html#refund">Payment and Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>100% safe and secure payment with Razorpay, Easebuzz, Skill India, Microsoft, NSDC, #startupindia</p>
+            <div class="social-links">
+                <!-- Social Icons would go here -->
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            /* Light teal text */
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            height: auto;
+            font-weight: 700;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #a7ffeb;
+        }
+
+        .btn-primary {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #b2dfdb;
+        }
+
+        /* Responsive for Grid and Timeline */
+        @media (max-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pathway-title {
+                font-size: 1rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+                /* Move line to left */
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 23px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .timeline-item .content {
+                text-align: left;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    :root {
+        --bg-gradient-start: #011215;
+        /* Black/Dark Cyan */
+        --bg-gradient-end: #003333;
+        /* Deep Dark Turquoise */
+        --primary-accent: #00ced1;
+        /* DarkTurquoise */
+        --primary-dark: #009999;
+        /* Darker Turquoise for gradients */
+        --primary-glow: rgba(0, 206, 209, 0.4);
+        --glass-bg: rgba(255, 255, 255, 0.9);
+        /* Modal is light in image, keeping light for contrast or dark if requested? 
+       Image shows WHITE modal on dark bg. I will stick to Image: White modal. */
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --text-main: #f0ffff;
+        /* Azure */
+        --text-dark: #333333;
+        /* For modal text */
+        --text-muted: #b0e0e6;
+        /* PaleTurquoise */
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #0d0d15;
+        /* Dark background base */
+        color: var(--text-main);
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* --- Container & Layout --- */
+    .landing-container {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: radial-gradient(circle at 30% 50%, #1a1a2e 0%, #000000 70%);
+        /* Deep purple/black base similar to image but darker */
+        background: radial-gradient(circle at 30% 50%, #001f1f 0%, #000000 70%);
+        /* Dark Turquoise/Black base */
+    }
+
+    /* --- Image Grid Background --- */
+    .image-grid {
+        position: absolute;
+        top: -10%;
+        right: -10%;
+        width: 60%;
+        height: 120%;
+        display: flex;
+        gap: 20px;
+        transform: rotate(-10deg);
+        /* Slight tilt like some designs or just shifting */
+        opacity: 0.8;
+        z-index: 0;
+        pointer-events: none;
+        mask-image: linear-gradient(to left, black 0%, transparent 100%);
+        /* Fade out towards text */
+        -webkit-mask-image: linear-gradient(to left, black 20%, transparent 100%);
+    }
+
+    .grid-col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .col-1 {
+        margin-top: 50px;
+    }
+
+    .col-2 {
+        margin-top: 0px;
+    }
+
+    .col-3 {
+        margin-top: 100px;
+    }
+
+    .image-grid img {
+        width: 250px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        filter: brightness(0.8);
+    }
+
+    /* --- Content Wrapper --- */
+    .content-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    /* --- Hero Text Section --- */
+    .hero-text-section {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .hero-headline {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 0 0 20px rgba(0, 206, 209, 0.3);
+    }
+
+    .hero-subtext {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        max-width: 450px;
+        line-height: 1.6;
+    }
+
+    .explore-btn {
+        background: linear-gradient(135deg, #00ced1, #009999);
+        /* Turquoise Gradient */
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 206, 209, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .explore-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(0, 206, 209, 0.6);
+    }
+
+    /* --- Login Modal --- */
+    .login-modal-container {
+        flex: 0 0 400px;
+        /* Fixed width for modal */
+        perspective: 1000px;
+    }
+
+    .login-modal {
+        background: rgba(255, 255, 255, 0.95);
+        /* White glass */
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        position: relative;
+        text-align: center;
+        color: var(--text-dark);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #555;
+        cursor: pointer;
+    }
+
+    .login-modal h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .welcome-text {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    /* Form Styles */
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background: #f9f9f9;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+        border-color: var(--primary-accent);
+    }
+
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+        color: #666;
+    }
+
+    .forgot-pass {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #00ced1, #008b8b);
+        /* Turquoise instead of Purple */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 206, 209, 0.3);
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
+
+    .divider span {
+        padding: 0 10px;
+    }
+
+    .google-btn {
+        width: 100%;
+        padding: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        color: #555;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background 0.2s;
+    }
+
+    .google-btn:hover {
+        background: #f5f5f5;
+    }
+
+    .google-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .signup-link {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .signup-link a {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .content-wrapper {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-text-section {
+            margin-bottom: 40px;
+        }
+
+        .hero-subtext {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-grid {
+            opacity: 0.3;
+            /* Fade grid more on mobile */
+            width: 100%;
+            right: 0;
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+    }
+
+    /* --- Contact Page Specifics --- */
+    .contact-modal {
+        background: rgba(255, 255, 255, 0.85);
+        /* Slightly more opaque/milky as per image */
+        backdrop-filter: blur(10px);
+        width: 100%;
+        min-width: 350px;
+    }
+
+    .contact-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .contact-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        text-align: left;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 206, 209, 0.15);
+        /* Light Turquoise shadow */
+    }
+
+    .contact-card h4 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 5px;
+    }
+
+    .contact-card h4 a {
+        color: var(--primary-dark);
+        /* Turquoise link */
+        text-decoration: none;
+    }
+
+    .contact-card p {
+        font-size: 0.8rem;
+        color: #666;
+        margin: 0;
+    }
+</style>
+
+<script src="js/script.js"></script>
+</body>
+
+</html>

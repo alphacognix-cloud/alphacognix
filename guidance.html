@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfrah Cognix</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+
+
+        :root {
+            --bg-dark: #021a20;
+            /* Deep Dark Teal/Black */
+            --accent-teal: #00ced1;
+            /* Dark Turquoise */
+            --text-white: #ffffff;
+            --text-muted: #b0bec5;
+            --card-bg: #03252e;
+            /* Slightly lighter than body */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* --- Layout Utils --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .lms-section {
+            padding: 80px 0;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            background: linear-gradient(90deg, #fff, #b2ebf2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        /* --- Section 1: Challenges --- */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .challenge-card {
+            background: transparent;
+            border-radius: 8px;
+            padding-bottom: 20px;
+        }
+
+        .challenge-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .challenge-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .challenge-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .challenge-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* --- Section 2: Key Features (ZigZag) --- */
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .feature-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text {
+            flex: 1;
+            border: 1px solid darkturquoise;
+            border-radius: 12px;
+            padding: 30px 20px;
+        }
+
+        .feature-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .feature-image {
+            flex: 1.2;
+            position: relative;
+        }
+
+        .feature-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Section 3: App Features (Grid) --- */
+        .app-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            columns: 3;
+            gap: 40px;
+        }
+
+        .app-feature-item {
+            padding: 20px;
+            border: 1px solid #0faaac;
+            border-radius: 12px;
+            padding: 30px 20px;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0d47a1;
+            /* Dark Blue base */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #42a5f5;
+            /* Lighter Blue Icon */
+            font-size: 1.2rem;
+            background: rgba(0, 206, 209, 0.1);
+            /* Dark Turquoise tint */
+            color: var(--accent-teal);
+            border: 1px solid rgba(0, 206, 209, 0.3);
+        }
+
+        .app-feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .app-feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- Section 4: Process --- */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .process-step h4 {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .step-card {
+            padding: 25px;
+            border-radius: 12px;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .step-card.blue {
+            background: #1565c0;
+        }
+
+        .step-card.green {
+            background: #2e7d32;
+        }
+
+        .step-card.red {
+            background: #c62828;
+        }
+
+        .step-card.teal {
+            background: #00695c;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+
+            .feature-row,
+            .feature-row.reverse {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo (2).png" alt="Alfrah Cognix Logo">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="programs.html" class="nav-link">Programs</a></li>
+                    <li><a href="guidance.html" class="nav-link">Career & Guidance</a></li>
+                    <li><a href="signup.html" class="nav-link">Packs & Plans</a></li>
+                    <li><a href="refer.html" class="nav-link">Refer & Earn</a></li>
+                    <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://alfrahcognix.in/" class="btn btn-login">Go For Classes</a>
+            </div>
+
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Section 1: Challenges -->
+    <section class="lms-section challenges-section">
+        <div class="container">
+            <h2 class="section-title">E-Learning Platform Roadblocks</h2>
+
+            <div class="challenges-grid">
+                <!-- Card 1 -->
+                <div class="challenge-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="One Size Fits All">
+                    <h3>One Size Fits All Approach</h3>
+                    <p>Traditional "one-size-fits-all" training methods often fall short in engaging a diverse
+                        workforce.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="challenge-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="Global Consistency">
+                    <h3>Global Consistency</h3>
+                    <p>Ensuring consistent training quality across different locations, departments, and cultures is a
+                        complex challenge.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="challenge-card">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="High Training Cost">
+                    <h3>High Training Cost</h3>
+                    <p>Budget, time, and personnel limitations are obstacles to creating engaging and effective learning
+                        experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Key Features -->
+    <section class="lms-section features-section">
+        <div class="container">
+            <h2 class="section-title">Exploring the Key Features of LMS</h2>
+
+            <!-- Feature 1: Learning Paths -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>Learning Paths</h3>
+                    <p>Tailor learning journeys based on competencies. Effortlessly design learning paths with our
+                        user-friendly interface for skill development and easy customization.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Learning Paths Dashboard">
+                </div>
+            </div>
+
+            <!-- Feature 2: Gamified Lessons (Right Text, Left Image in theory, but keeping ZigZag via CSS or structure) -->
+            <div class="feature-row reverse">
+                <div class="feature-text">
+                    <h3>Interactive Gamified Lessons</h3>
+                    <p>Learners can enjoy interactive lessons with real-world scenarios. Our engaging content fosters
+                        understanding and establishes a personal connection.</p>
+                </div>
+                <div class="feature-image image-left">
+                    <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Gamified Lessons">
+                </div>
+            </div>
+
+            <!-- Feature 3: Dynamic Management -->
+            <div class="feature-row">
+                <div class="feature-text">
+                    <h3>Dynamic Course Management</h3>
+                    <p>Create captivating courses with videos, presentations, and quizzes. Deliver interactive content
+                        that adheres to e-learning standards.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Course Management">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: App Features Grid -->
+    <section class="lms-section app-features-section">
+        <div class="container">
+            <h2 class="section-title">LMS/e-learning App Development Features</h2>
+
+            <div class="app-features-grid">
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Learner Portal</h3>
+                    <p>Navigate our user-friendly portal for learning accessible anytime, anywhere.</p>
+                </div>
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-palette"></i></div>
+                    <h3>Brand Customization</h3>
+                    <p>Stand out with a unique domain and logo. Share your story with a dynamic homepage.</p>
+                </div>
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-chart-line"></i></div>
+                    <h3>Performance Reporting</h3>
+                    <p>Track real-time progress and insights. Understand quiz scores and strengths.</p>
+                </div>
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-users-cog"></i></div>
+                    <h3>User Management</h3>
+                    <p>Effortlessly onboard and manage users based on roles and learning environment.</p>
+                </div>
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
+                    <h3>Global Accessibility</h3>
+                    <p>Let learners from around the world access your LMS/E-Learning platform on all devices.</p>
+                </div>
+                <div class="app-feature-item">
+                    <div class="icon-circle"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Reporting And Data Analytics</h3>
+                    <p>Get detailed reports to make informed decisions to enhance learning and monitor engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Development Process -->
+    <section class="lms-section process-section">
+        <div class="container">
+            <h2 class="section-title">Here's how we develop the e-learning platform</h2>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <h4>Reach out to us</h4>
+                    <div class="step-card blue">
+                        <p>Searching for a robust LMS? Contact us to discuss your requirements.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <h4>Understand & Evaluate idea</h4>
+                    <div class="step-card green">
+                        <p>We understand and analyze your idea creating a logical workflow.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <h4>Sign NDA & Contract</h4>
+                    <div class="step-card red">
+                        <p>Upon signing the NDA and contract, our team will promptly start the development.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <h4>Start Working</h4>
+                    <div class="step-card teal">
+                        <p>After you finalize the contract/design, we'll start working to bring your vision to life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col" style="flex: 2;">
+                <div class="footer-logo">Alfrah Cognix</div>
+                <p>1st floor, 471, Oppo, Income tax office, to, 80th main road, 6th Block, Koramangala, Bengaluru,
+                    Karnataka 560095</p>
+
+                <h4 style="margin-top: 20px;">Community Exclusive</h4>
+                <p>Subscribe to our newsletter for exclusive updates on the latest releases and special offers.</p>
+                <div class="subscribe-box" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <input type="email" placeholder="Email Id"
+                        style="padding: 10px; border-radius: 4px; border: none; flex: 1;">
+                    <button class="btn btn-primary"
+                        style="border-radius: 4px; background-color: #00bcd4; color: white;">Subscribe</button>
+                </div>
+                <p style="margin-top: 20px;">©2025 . All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="guidance.html">Careers</a></li>
+                    <li><a href="signup.html">Packs & Plans</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Marketing</li>
+                    <li>Product</li>
+                    <li>Data</li>
+                    <li>Tech</li>
+                    <li>Design</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html#privacy">Privacy Policy</a></li>
+                    <li><a href="legal.html#terms">Terms and Condition</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Support</h4>
+                <ul>
+                    <li><a href="legal.html#faq">FAQ</a></li>
+                    <li><a href="legal.html#refund">Payment and Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>100% safe and secure payment with Razorpay, Easebuzz, Skill India, Microsoft, NSDC, #startupindia</p>
+            <div class="social-links">
+                <!-- Social Icons would go here -->
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+
+</html>

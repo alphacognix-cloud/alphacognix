@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfrah Cognix</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        /* Global Styles & Variables */
+        :root {
+            --primary-color: #00bcd4;
+            /* Cyan/Teal */
+            --primary-hover: #00acc1;
+            --secondary-color: #0c1a2c;
+            /* Dark Blue from Hero */
+            --accent-color: #fca311;
+            /* Example accent if needed */
+            --text-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --container-width: 1200px;
+            --header-height: 80px;
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 50px;
+            /* Pill shape */
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: var(--font-heading);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+        }
+
+        .btn-login {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 4px;
+            /* Login button is usually deeper rect or simple */
+            /* Adjusting to match design if visible, usually top right login is simple */
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Responsive for Grid and Timeline */
+        @media (max-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pathway-title {
+                font-size: 1rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+                /* Move line to left */
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 23px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .timeline-item .content {
+                text-align: left;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+
+
+
+        :root {
+            --bg-gradient-start: #011215;
+            /* Black/Dark Cyan */
+            --bg-gradient-end: #003333;
+            /* Deep Dark Turquoise */
+            --primary-accent: #00ced1;
+            /* DarkTurquoise */
+            --primary-dark: #008080;
+            /* Teal */
+            --primary-glow: rgba(0, 206, 209, 0.4);
+            --secondary-accent: #20b2aa;
+            /* LightSeaGreen */
+            --glass-bg: rgba(0, 40, 50, 0.6);
+            --glass-border: rgba(0, 206, 209, 0.3);
+            --text-main: #f0ffff;
+            /* Azure */
+            --text-muted: #b0e0e6;
+            /* PowderBlue */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top center, #004d4d 0%, #011215 80%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Typography Helpers --- */
+        .highlight-primary {
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(0, 206, 209, 0.3);
+        }
+
+        .section-heading-left {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .section-heading.center {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            margin-top: 80px;
+            color: var(--text-main);
+        }
+
+        .section-desc.center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            padding: 100px 20px 80px;
+            background: linear-gradient(180deg, rgba(0, 206, 209, 0.15) 0%, transparent 100%);
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            /* Image 1 shows left aligned text blocks mostly */
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-left: 20px;
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                border-radius: 12px;
+                padding: 30px 20px;
+            }
+
+            /* Indent slightly if needed */
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #fff, var(--primary-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* --- Mission & Vision --- */
+        .mission-vision-section {
+            padding: 60px 0;
+            background: #ffffff;
+            /* White bg for this section as per image usually, but request is Dark Theme. */
+            /* Wait, request is "Change into dark turquoise theme" for the IMAGES content.
+           So I should keep it dark or invert the image's white bg.
+           I will use a dark panel for Mission/Vision to stay in theme. */
+            background: transparent;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+            }
+        }
+
+        .text-block p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* --- Core Values --- */
+        .values-section {
+            padding: 60px 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .value-card {
+            background: #ffffff;
+            /* Image has white cards */
+            /* Converting to Dark Theme */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 206, 209, 0.2);
+            border-color: var(--primary-accent);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 206, 209, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+        }
+
+        .value-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- Impact Section --- */
+        .impact-section {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #005ce6, #001f4d);
+            /* Image blue bg */
+            /* Converting to Dark Turquoise Theme */
+            background: linear-gradient(135deg, var(--primary-accent), #004d4d);
+            text-align: center;
+            border-radius: 0;
+            /* To make it full width or containered? The image shows full width rounded rect maybe?
+           Actually image 2 shows a big blue block. I'll make it a full width section or wide container.
+           I'll use a container with border radius to match image look. */
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid;
+            border-color: darkcyan;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 206, 209, 0.3);
+        }
+
+        .impact-section h2.white {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .impact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1 1 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        /* --- Join Team Section --- */
+        .join-team-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .center-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #005ce6, #2a81ff);
+            /* Image blue btn */
+            /* Converting to Dark Turquoise Theme */
+            background: linear-gradient(135deg, var(--primary-accent), #009999);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 206, 209, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 206, 209, 0.6);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-section {
+                justify-content: center;
+            }
+
+            .section-heading-left {
+                text-align: center;
+            }
+
+            .text-block {
+                text-align: center;
+            }
+        }
+
+        /* Hover Color Image Style */
+        .hover-color-img {
+            filter: grayscale(80%);
+            transition: filter 0.4s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hover-color-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo (2).png" alt="Alfrah Cognix Logo">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="programs.html" class="nav-link">Programs</a></li>
+                    <li><a href="guidance.html" class="nav-link">Career & Guidance</a></li>
+                    <li><a href="signup.html" class="nav-link">Packs & Plans</a></li>
+                    <li><a href="refer.html" class="nav-link">Refer & Earn</a></li>
+                    <li><a href="about_us.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://alfrahcognix.in/" class="btn btn-login">Go For Classes</a>
+            </div>
+
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">Empowering Learners <span class="highlight-primary">Worldwide</span></h1>
+            <p class="subtitle">LearnHub is on a mission to make quality education accessible to everyone, everywhere.
+                We
+                believe that learning is a lifelong journey, and we're here to support you every step of the way.</p>
+        </div>
+    </header>
+
+    <!-- CEO Profile Section -->
+    <section class="ceo-profile-section" style="padding: 40px 0 60px; text-align: center;">
+        <h2 class="section-heading center" style="margin-top: 0; margin-bottom: 30px;">The Faces Behind Alfrah Cognix's
+            Success Story</h2>
+        <div class="container" style="display: flex; justify-content: center;">
+            <div class="ceo-wrapper" style="position: relative; max-width: 60%;">
+                <img src="assets/images/ceo_profile.png" alt="The Minds Behind Fueling Corizo’s Growth"
+                    class="hover-color-img"
+                    style="width: 100%; border: 3px solid darkcyan; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 206, 209, 0.2);">
+
+                <!-- Founder Arrow (Left) -->
+                <div class="arrow-popup arrow-left">
+                    <span class="arrow-text">Co-Founder (CMO)</span>
+                    <svg class="arrow-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <!-- Path from Person (25% x, 45% y) to Text (15% x, 15% y) -->
+                        <path d="M25,45 Q15,45 15,15" stroke="white" stroke-width="1.5" fill="none"
+                            stroke-linecap="round" class="arrow-path" />
+                        <!-- Arrowhead at 15,15 -->
+                        <path d="M12,20 L15,15 L18,20" stroke="white" stroke-width="1.5" fill="none"
+                            stroke-linecap="round" class="arrow-head" />
+                    </svg>
+                </div>
+
+                <!-- Co-Founder Arrow (Right) -->
+                <div class="arrow-popup arrow-right">
+                    <span class="arrow-text">Founder (CEO)</span>
+                    <svg class="arrow-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <!-- Path from Person (75% x, 45% y) to Text (85% x, 15% y) -->
+                        <path d="M75,45 Q85,45 85,15" stroke="white" stroke-width="1.5" fill="none"
+                            stroke-linecap="round" class="arrow-path" />
+                        <!-- Arrowhead at 85,15 -->
+                        <path d="M82,20 L85,15 L88,20" stroke="white" stroke-width="1.5" fill="none"
+                            stroke-linecap="round" class="arrow-head" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision-section">
+        <div class="container grid-2-col">
+            <div class="text-block">
+                <h2 class="section-heading-left">Our Mission</h2>
+                <p>We're dedicated to democratizing education by providing high-quality, affordable courses that help
+                    people develop new skills, advance their careers, and pursue their passions. Through innovative
+                    technology and expert instruction, we make learning engaging, effective, and accessible to all.</p>
+            </div>
+            <div class="text-block">
+                <h2 class="section-heading-left">Our Vision</h2>
+                <p>We envision a world where anyone, anywhere can transform their life through learning. By breaking
+                    down
+                    barriers to education and fostering a global community of learners, we aim to unlock human potential
+                    and create opportunities for millions of people worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="values-section">
+        <h2 class="section-heading center">Our Core Values</h2>
+        <div class="container values-grid">
+            <!-- Excellence -->
+            <div class="value-card">
+                <div class="icon-box">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Excellence</h3>
+                <p>We maintain the highest standards in course quality and learning outcomes.</p>
+            </div>
+            <!-- Community -->
+            <div class="value-card">
+                <div class="icon-box">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Community</h3>
+                <p>We foster a supportive environment where learners can connect and grow together.</p>
+            </div>
+            <!-- Integrity -->
+            <div class="value-card">
+                <div class="icon-box">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Integrity</h3>
+                <p>We operate with transparency, honesty, and respect for all our learners.</p>
+            </div>
+            <!-- Innovation -->
+            <div class="value-card">
+                <div class="icon-box">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Innovation</h3>
+                <p>We continuously evolve our platform to enhance the learning experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <h2 class="section-heading center white">Our Impact</h2>
+        <div class="container impact-grid">
+            <div class="stat-item">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Active Students</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Expert Courses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Top Instructors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Countries Reached</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Team Section -->
+    <section class="join-team-section">
+        <h2 class="section-heading center">Join Our Team</h2>
+        <p class="section-desc center">We're always looking for passionate individuals who want to make a difference in
+            education. If you share our vision, we'd love to hear from you.</p>
+        <div class="center-btn">
+            <button class="primary-btn">View Open Positions</button>
+        </div>
+    </section>
+
+
+
+    <script src="js/script.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col" style="flex: 2;">
+                <div class="footer-logo">Alfrah Cognix</div>
+                <p>1st floor, 471, Oppo, Income tax office, to, 80th main road, 6th Block, Koramangala, Bengaluru,
+                    Karnataka 560095</p>
+
+                <h4 style="margin-top: 20px;">Community Exclusive</h4>
+                <p>Subscribe to our newsletter for exclusive updates on the latest releases and special offers.</p>
+                <div class="subscribe-box" style="margin-top: 10px; display: flex; gap: 10px;">
+                    <input type="email" placeholder="Email Id"
+                        style="padding: 10px; border-radius: 4px; border: none; flex: 1;">
+                    <button class="btn btn-primary" style="border-radius: 4px;">Subscribe</button>
+                </div>
+                <p style="margin-top: 20px;">©2025 . All rights reserved.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="guidance.html">Careers</a></li>
+                    <li><a href="signup.html">Packs & Plans</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Industries</h4>
+                <ul>
+                    <li>Marketing</li>
+                    <li>Product</li>
+                    <li>Data</li>
+                    <li>Tech</li>
+                    <li>Design</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html#privacy">Privacy Policy</a></li>
+                    <li><a href="legal.html#terms">Terms and Condition</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Support</h4>
+                <ul>
+                    <li><a href="legal.html#faq">FAQ</a></li>
+                    <li><a href="legal.html#refund">Payment and Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>100% safe and secure payment with Razorpay, Easebuzz, Skill India, Microsoft, NSDC, #startupindia</p>
+            <div class="social-links">
+                <!-- Social Icons would go here -->
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
